@@ -3,7 +3,22 @@ guid: e2fc7ccd7365a5748b2b276b7c6199d9
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__pasted__pasted__pasted__Skin1
+    second: {fileID: 2100000, guid: 03df523b8e174d64c8458181ffd7580f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__pasted__pasted__pasted__pasted__Mat_Kiana_C5_FACE
+    second: {fileID: 2100000, guid: fa2aa01b677415347a41226aad960b1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Skin1
+    second: {fileID: 2100000, guid: 03df523b8e174d64c8458181ffd7580f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
