@@ -19,23 +19,22 @@ public class ComboAttack : MonoBehaviour
         {
             if (comboStep == 2)
             {
-                anim.Play("Player_LightAtk_B");
+                anim.Play("Player_Light_Attack2");
             }
             if (comboStep == 3)
             {
-                anim.Play("Player_LightAtk_C");
+                anim.Play("Player_Light_Attack3");
             }
         }
         if (inputHeavy)
         {
-            
             if (comboStep==2)
             {
-                anim.Play("Player_HeavyAtk_B");
+                anim.Play("Player_Heavy_Attack1");
             }
             if (comboStep==3)
             {
-                anim.Play("Player_HeavyAtk_C");
+                anim.Play("Player_Heavy_Attack2");
             }
         }
     }
@@ -51,7 +50,7 @@ public class ComboAttack : MonoBehaviour
     {
         if (comboStep == 0)
         {
-            anim.Play("Player_LightAtk_A");
+            anim.Play("Player_Light_Attack1");
             comboStep = 1;
             return;
         }
