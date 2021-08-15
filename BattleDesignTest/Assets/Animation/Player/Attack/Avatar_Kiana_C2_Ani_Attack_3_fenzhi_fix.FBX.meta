@@ -38,7 +38,7 @@ ModelImporter:
       name: Player_Heavy_Attack1
       takeName: Take 001
       internalID: 0
-      firstFrame: 60
+      firstFrame: 65
       lastFrame: 170
       wrapMode: 0
       orientationOffsetY: 0

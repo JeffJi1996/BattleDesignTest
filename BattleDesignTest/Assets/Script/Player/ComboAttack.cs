@@ -1,13 +1,17 @@
 using UnityEngine;
 
-public class ComboAttack : MonoBehaviour
+public class ComboAttack : Singleton<ComboAttack>
 {
     [SerializeField] private Animator anim;
-
+    private bool canMove;
     bool comboPossible;
     public int comboStep;
     bool inputHeavy;
 
+    void Start()
+    {
+        canMove = true;
+    }
     public void ComboPossible()
     {
         comboPossible = true;
@@ -73,6 +77,16 @@ public class ComboAttack : MonoBehaviour
         }
     }
 
+    public void CannotMove()
+    {
+        canMove = false;
+    }
+
+    public void CanMove()
+    {
+        canMove = true;
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -84,5 +98,10 @@ public class ComboAttack : MonoBehaviour
         {
             HeavyAttack();
         }
+    }
+
+    public bool CanMoveState()
+    {
+        return canMove;
     }
 }
