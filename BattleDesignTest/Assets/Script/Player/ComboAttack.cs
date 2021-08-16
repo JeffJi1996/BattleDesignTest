@@ -3,6 +3,7 @@ using UnityEngine;
 public class ComboAttack : Singleton<ComboAttack>
 {
     [SerializeField] private Animator anim;
+    [SerializeField] private Transform enemy;
     private bool canMove;
     bool comboPossible;
     public int comboStep;
@@ -41,6 +42,7 @@ public class ComboAttack : Singleton<ComboAttack>
                 anim.Play("Player_Heavy_Attack2");
             }
         }
+        AttackDetect.Instance.ClearHasHurt();
     }
 
     public void ResetCombo()
@@ -48,10 +50,12 @@ public class ComboAttack : Singleton<ComboAttack>
         comboPossible = false;
         inputHeavy = false;
         comboStep = 0;
+        AttackDetect.Instance.ClearHasHurt();
     }
 
     void LightAtk()
     {
+        TurnToEnemy();
         if (comboStep == 0)
         {
             anim.Play("Player_Light_Attack1");
@@ -70,6 +74,7 @@ public class ComboAttack : Singleton<ComboAttack>
 
     void HeavyAttack()
     {
+        TurnToEnemy();
         if (comboPossible)
         {
             comboPossible = false;
@@ -98,6 +103,11 @@ public class ComboAttack : Singleton<ComboAttack>
         {
             HeavyAttack();
         }
+    }
+
+    public void TurnToEnemy()
+    {
+        transform.forward = enemy.position - transform.position;
     }
 
     public bool CanMoveState()

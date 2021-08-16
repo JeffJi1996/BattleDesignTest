@@ -1,13 +1,14 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class AttackDetect : MonoBehaviour
+public class AttackDetect : Singleton<AttackDetect>
 {
     private bool LeftHandDetectStart;
     private bool RightHandDetectStart;
     private bool LeftFootDetectStart;
     private bool RightFootDetectStart;
 
+    private bool hasHurt;
     [SerializeField] private LayerMask enemyLayer;
 
     [SerializeField] private Transform LHandPos;
@@ -20,16 +21,19 @@ public class AttackDetect : MonoBehaviour
     [SerializeField] private float LFootRange;
     [SerializeField] private float RFootRange;
 
+    public PlayerAttackType[] PlayerAttackTypes;
 
-    private void Detect(Transform atkPos, float atkRange)
+
+    private void Detect(Transform atkPos, float atkRange, PlayerAttackType playerAttackType)
     {
         Collider[] hitEnemies = Physics.OverlapSphere(atkPos.position, atkRange, enemyLayer);
-        if (hitEnemies.Length>0)
+        if (hitEnemies.Length>0 && !hasHurt)
         {
             foreach (var hitEnemy in hitEnemies)
             {
                 Debug.Log(hitEnemy.name);
             }
+            hasHurt = true;
         }
     }
 
@@ -37,19 +41,19 @@ public class AttackDetect : MonoBehaviour
     {
         if (LeftHandDetectStart)
         {
-            Detect(LHandPos,LHandRange);
+            Detect(LHandPos,LHandRange,PlayerAttackTypes[0]);
         }
         else if (RightHandDetectStart)
         {
-            Detect(RHandPos, RHandRange);
+            Detect(RHandPos, RHandRange,PlayerAttackTypes[1]);
         }
         else if (LeftFootDetectStart)
         {
-            Detect(LFootPos,LFootRange);   
+            Detect(LFootPos,LFootRange,PlayerAttackTypes[0]);   
         }
         else if(RightFootDetectStart)
         {
-            Detect(RFootPos,RFootRange);
+            Detect(RFootPos,RFootRange,PlayerAttackTypes[1]);
         }
     }
 
@@ -91,6 +95,11 @@ public class AttackDetect : MonoBehaviour
         RightFootDetectStart = false;
     }
 
+    public void ClearHasHurt()
+    {
+        hasHurt = false;
+    }
+
     //void OnDrawGizmos()
     //{
     //    Gizmos.DrawSphere(LHandPos.position,LHandRange);
@@ -98,5 +107,7 @@ public class AttackDetect : MonoBehaviour
     //    Gizmos.DrawSphere(RHandPos.position, RHandRange);
     //    Gizmos.DrawSphere(RFootPos.position, RFootRange);
     //}
+
+    
 
 }
