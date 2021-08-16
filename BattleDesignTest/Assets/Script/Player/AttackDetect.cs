@@ -31,7 +31,13 @@ public class AttackDetect : Singleton<AttackDetect>
         {
             foreach (var hitEnemy in hitEnemies)
             {
-                Debug.Log(hitEnemy.name);
+                int damage = Random.Range(playerAttackType.healthDamageMin, playerAttackType.healthDamageMax);
+                int poise = Random.Range(playerAttackType.poiseDamageMin, playerAttackType.poiseDamageMax);
+                hitEnemy.GetComponent<EnemyAI>().GetHurt(damage,poise);
+                if (hitEnemy.GetComponent<EnemyAI>().currentPoise <= 0)
+                {
+                    hitEnemy.GetComponent<EnemyAI>().HurtInRecover();
+                }
             }
             hasHurt = true;
         }

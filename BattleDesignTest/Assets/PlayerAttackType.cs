@@ -12,8 +12,8 @@ public class PlayerAttackType
         HeavyAttack,
     }
     public AttackType attackType;
-    public float healthDamageMin;
-    public float healthDamageMax;
-    public float poiseDamageMin;
-    public float poiseDamageMax;
+    public int healthDamageMin;
+    public int healthDamageMax;
+    public int poiseDamageMin;
+    public int poiseDamageMax;
 }

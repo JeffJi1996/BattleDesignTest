@@ -2140,6 +2140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 368479380056197374}
+  enemy: {fileID: 0}
   comboStep: 0
 --- !u!114 &4186181815842127254
 MonoBehaviour:
@@ -2164,6 +2165,17 @@ MonoBehaviour:
   RHandRange: 0.15
   LFootRange: 0.15
   RFootRange: 0.15
+  PlayerAttackTypes:
+  - attackType: 0
+    healthDamageMin: 1
+    healthDamageMax: 5
+    poiseDamageMin: 8
+    poiseDamageMax: 10
+  - attackType: 1
+    healthDamageMin: 5
+    healthDamageMax: 10
+    poiseDamageMin: 10
+    poiseDamageMax: 15
 --- !u!1 &6575031901670541639
 GameObject:
   m_ObjectHideFlags: 0
