@@ -103,6 +103,13 @@ public class ComboAttack : Singleton<ComboAttack>
         {
             HeavyAttack();
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift)&&!anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerEvade"))
+        {
+            anim.SetTrigger("Evade");
+            ResetAll();
+        }
+
     }
 
     public void TurnToEnemy()
@@ -114,4 +121,12 @@ public class ComboAttack : Singleton<ComboAttack>
     {
         return canMove;
     }
+
+    public void ResetAll()
+    {
+        AttackDetect.Instance.ClearDetect();
+        CannotMove();
+        ResetCombo();
+    }
+
 }

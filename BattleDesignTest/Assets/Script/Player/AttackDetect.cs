@@ -114,6 +114,13 @@ public class AttackDetect : Singleton<AttackDetect>
     //    Gizmos.DrawSphere(RFootPos.position, RFootRange);
     //}
 
+    public void ClearDetect()
+    {
+        LeftHandDetectStart = false;
+        RightHandDetectStart = false;
+        LeftFootDetectStart = false;
+        RightFootDetectStart = false;
+    }
     
 
 }

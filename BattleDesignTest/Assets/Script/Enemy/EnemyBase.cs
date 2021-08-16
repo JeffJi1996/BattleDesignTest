@@ -11,7 +11,7 @@ public class EnemyBase : MonoBehaviour
 
     public Rigidbody rb;
     public NavMeshAgent agent;
-    public int damage;
+    public Animator anim;
 
     public GameObject Player;
 
@@ -29,8 +29,8 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Attack()
     {
+        anim.SetTrigger("Attack");
 
-        Debug.Log("Attack");
     }
 
 }

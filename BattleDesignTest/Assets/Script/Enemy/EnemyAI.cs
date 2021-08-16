@@ -14,11 +14,20 @@ public class EnemyAI : EnemyBase
 
     [SerializeField] private float attackTime;
     [SerializeField] private float hitRecoverTime;
+    [SerializeField] private LayerMask playerLayerMask;
+    public bool startDetect = false;
+    private bool hasHurt = false;
+    [SerializeField] private int damage;
+
+    public Transform point1;
+    public Transform point2;
+    public float radius;
 
 
     private IEnumerator m_previousAction = null;
     private bool m_resume = false;
     private bool doOnce = false;
+
 
     public enum State
     {
@@ -62,17 +71,7 @@ public class EnemyAI : EnemyBase
         }
     }
 
-    private IEnumerator OnHitRecover()
-    {
-        agent.isStopped = true;
-        //agent.enabled = false;
 
-        yield return new WaitForSeconds(hitRecoverTime);
-        currentPoise = poise;
-        //agent.enabled = true;
-        SetState(State.Chase);
-        doOnce = false;
-    }
 
     private IEnumerator OnIdle()
     {
@@ -88,6 +87,8 @@ public class EnemyAI : EnemyBase
             else
             {
                 agent.velocity = Vector3.zero;
+                anim.SetBool("Idle", true);
+                anim.SetBool("Move", false);
             }
 
             if (currentWaitTime > waitTime)
@@ -105,10 +106,14 @@ public class EnemyAI : EnemyBase
             var distance = Vector3.Distance(transform.position, Player.transform.position);
             if (distance > idleRangeMax)
             {
+                anim.SetBool("Idle", false);
+                anim.SetBool("Move", true);
                 agent.SetDestination(Player.transform.position);
             }
             else if (distance < idleRangeMin)
             {
+                anim.SetBool("Idle", false);
+                anim.SetBool("Move", true);
                 var movDistance = idleRangeMin - distance;
                 var movDirector = (Player.transform.position - transform.position).normalized;
                 agent.SetDestination(transform.position - movDirector * movDistance);
@@ -127,31 +132,81 @@ public class EnemyAI : EnemyBase
         SetState(State.Idle);
     }
 
+    private IEnumerator OnHitRecover()
+    {
+        anim.SetBool("HitRecover", true);
+        agent.isStopped = true;
+        //agent.enabled = false;
 
+        yield return new WaitForSeconds(hitRecoverTime);
+        anim.SetBool("HitRecover", false);
+        currentPoise = poise;
+        agent.isStopped = false;
+        //agent.enabled = true;
+        SetState(State.Chase);
+        doOnce = false;
+    }
 
     private void Update()
     {
         currentWaitTime += Time.deltaTime;
         transform.forward = Player.transform.position - transform.position;
 
-        if (currentPoise <= 0 &&!doOnce)
+        if (currentPoise <= 0 && !doOnce)
         {
             doOnce = true;
             SetState(State.HitRecover);
         }
+
+        if (startDetect)
+        {
+            DetectPlayer(point1, point2, radius);
+        }
+        Debug.DrawLine(point1.position, point2.position, Color.green);
+        
+
     }
 
     public void HurtInRecover()
     {
+        anim.SetTrigger("HurtHit");
         var direction = -(Player.transform.position - transform.position).normalized;
-        agent.velocity = direction*5;
+        agent.velocity = direction * 5;
         Debug.Log("Enemy Hurt");
     }
 
+    public void DetectPlayer(Transform Point1, Transform Point2, float radius)
+    {
+        Collider[] player = Physics.OverlapCapsule(Point1.position, Point2.position, radius, playerLayerMask);
+        if (player.Length > 0 && !hasHurt)
+        {
+            Debug.Log(player);
+            foreach (var playerCol in player)
+            {
+                PlayerHealth.Instance.GetHurt(damage);
+                hasHurt = true;
+            }
 
-    //void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawSphere(transform.position, idleRangeMax);
-    //    Gizmos.DrawSphere(transform.position, idleRangeMin);
-    //}
+        }
+
+    }
+
+    public void StartDetect()
+    {
+        startDetect = true;
+        hasHurt = false;
+    }
+
+    public void CloseDetect()
+    {
+        startDetect = false;
+        hasHurt = true;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(point1.position, radius);
+        Gizmos.DrawSphere(point2.position, radius);
+    }
+
 }
