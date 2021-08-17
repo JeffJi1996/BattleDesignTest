@@ -34,9 +34,15 @@ public class AttackDetect : Singleton<AttackDetect>
                 int damage = Random.Range(playerAttackType.healthDamageMin, playerAttackType.healthDamageMax);
                 int poise = Random.Range(playerAttackType.poiseDamageMin, playerAttackType.poiseDamageMax);
                 hitEnemy.GetComponent<EnemyAI>().GetHurt(damage,poise);
+
                 if (hitEnemy.GetComponent<EnemyAI>().currentPoise <= 0)
                 {
                     hitEnemy.GetComponent<EnemyAI>().HurtInRecover();
+                }
+
+                if (PlayerAbility.Instance.SoulState())
+                {
+                    PlayerAbility.Instance.AddSoulValue(playerAttackType.soulPlus);
                 }
             }
             hasHurt = true;

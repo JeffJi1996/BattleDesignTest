@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : Singleton<PlayerHealth>
 {
     [SerializeField] private int health;
-    private int currentHealth;
+    [SerializeField]private int currentHealth;
     public bool canBeHurt = true;
     private Animator anim;
 
@@ -27,6 +27,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         if (!canBeHurt)
         {
             Debug.Log("success");
+            PlayerAbility.Instance.ChangeIntoSoul();
         }
     }
 

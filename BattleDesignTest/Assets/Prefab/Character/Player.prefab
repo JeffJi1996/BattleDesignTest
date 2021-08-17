@@ -2046,6 +2046,8 @@ GameObject:
   - component: {fileID: 6114250556343134168}
   - component: {fileID: 4186181815842127254}
   - component: {fileID: 1782487400632564013}
+  - component: {fileID: 3986388527479237426}
+  - component: {fileID: 8197179206732200000}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -2172,11 +2174,13 @@ MonoBehaviour:
     healthDamageMax: 5
     poiseDamageMin: 8
     poiseDamageMax: 10
+    soulPlus: 10
   - attackType: 1
     healthDamageMin: 5
     healthDamageMax: 10
     poiseDamageMin: 10
     poiseDamageMax: 15
+    soulPlus: 20
 --- !u!114 &1782487400632564013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2190,7 +2194,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 9999
+  currentHealth: 0
   canBeHurt: 1
+--- !u!136 &3986388527479237426
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6392550103307241534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.21544857
+  m_Height: 1.8131527
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8609485, z: 0.007060513}
+--- !u!114 &8197179206732200000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6392550103307241534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962e0ecd91c7d864399306330b8cdbff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullSoulValue: 100
+  currentSoulValue: 0
+  soulTime: 10
+  anim: {fileID: 368479380056197374}
 --- !u!1 &6575031901670541639
 GameObject:
   m_ObjectHideFlags: 0

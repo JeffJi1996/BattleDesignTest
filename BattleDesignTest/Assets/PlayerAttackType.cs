@@ -16,4 +16,6 @@ public class PlayerAttackType
     public int healthDamageMax;
     public int poiseDamageMin;
     public int poiseDamageMax;
+
+    public int soulPlus;
 }

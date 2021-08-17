@@ -93,6 +93,7 @@ public class EnemyAI : EnemyBase
 
             if (currentWaitTime > waitTime)
             {
+                StopCoroutine(m_previousAction);
                 SetState(State.Attack);
             }
             yield return new WaitForFixedUpdate();
@@ -162,9 +163,6 @@ public class EnemyAI : EnemyBase
         {
             DetectPlayer(point1, point2, radius);
         }
-        Debug.DrawLine(point1.position, point2.position, Color.green);
-        
-
     }
 
     public void HurtInRecover()
@@ -180,7 +178,6 @@ public class EnemyAI : EnemyBase
         Collider[] player = Physics.OverlapCapsule(Point1.position, Point2.position, radius, playerLayerMask);
         if (player.Length > 0 && !hasHurt)
         {
-            Debug.Log(player);
             foreach (var playerCol in player)
             {
                 PlayerHealth.Instance.GetHurt(damage);
@@ -190,7 +187,7 @@ public class EnemyAI : EnemyBase
         }
 
     }
-
+    
     public void StartDetect()
     {
         startDetect = true;

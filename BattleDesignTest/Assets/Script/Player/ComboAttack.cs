@@ -104,7 +104,8 @@ public class ComboAttack : Singleton<ComboAttack>
             HeavyAttack();
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)&&!anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerEvade"))
+        if (Input.GetKeyDown(KeyCode.LeftShift)&&!anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerEvade")
+                                               &&!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Hurt"))
         {
             anim.SetTrigger("Evade");
             ResetAll();
