@@ -96,4 +96,5 @@ public class PlayerAbility : Singleton<PlayerAbility>
         yield return new WaitForSecondsRealtime(1f);
         Time.timeScale = 1;
     }
+
 }

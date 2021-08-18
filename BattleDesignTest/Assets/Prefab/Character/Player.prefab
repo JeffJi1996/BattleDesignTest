@@ -2183,6 +2183,7 @@ MonoBehaviour:
     poiseDamageMin: 10
     poiseDamageMax: 15
     soulPlus: 20
+  AttackVFX: {fileID: 1564421980168344, guid: 49c4f7c3ff489ac41bd6e80536ae23c5, type: 3}
 --- !u!114 &1782487400632564013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2227,6 +2228,10 @@ MonoBehaviour:
   fullSoulValue: 100
   currentSoulValue: 0
   soulTime: 10
+  soulPartical1: {fileID: 0}
+  handEffect1: {fileID: 0}
+  handEffect2: {fileID: 0}
+  camAnimator: {fileID: 0}
   anim: {fileID: 368479380056197374}
 --- !u!1 &6575031901670541639
 GameObject:

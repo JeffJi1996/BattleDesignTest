@@ -25,6 +25,8 @@ public class AttackDetect : Singleton<AttackDetect>
 
     public PlayerAttackType[] PlayerAttackTypes;
 
+    [SerializeField] private GameObject AttackVFX;
+
 
     private void Detect(Transform atkPos, float atkRange, PlayerAttackType playerAttackType)
     {
@@ -36,6 +38,7 @@ public class AttackDetect : Singleton<AttackDetect>
                 int damage = Random.Range(playerAttackType.healthDamageMin, playerAttackType.healthDamageMax);
                 int poise = Random.Range(playerAttackType.poiseDamageMin, playerAttackType.poiseDamageMax);
                 hitEnemy.GetComponent<EnemyAI>().GetHurt(damage, poise);
+                StartAttackVFX(atkPos);
 
                 if (playerAttackType.attackType == PlayerAttackType.AttackType.LightAttack)
                 {
@@ -152,5 +155,9 @@ public class AttackDetect : Singleton<AttackDetect>
         RightFootDetectStart = false;
     }
 
+    public void StartAttackVFX(Transform StartPosition)
+    {
+        Instantiate(AttackVFX, StartPosition.position, Quaternion.identity);
+    }
 
 }
