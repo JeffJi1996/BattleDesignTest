@@ -59,6 +59,7 @@ public class PlayerAbility : Singleton<PlayerAbility>
         }
     }
 
+
     public bool SoulState()
     {
         return isSouling;

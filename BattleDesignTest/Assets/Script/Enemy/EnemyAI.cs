@@ -46,7 +46,7 @@ public class EnemyAI : EnemyBase
 
     public State currentState;
 
-    private void SetState(State newState)
+    public void SetState(State newState)
     {
         currentState = newState;
 
@@ -200,10 +200,18 @@ public class EnemyAI : EnemyBase
         hasHurt = true;
     }
 
+    public void CloseCor()
+    {
+        StopAllCoroutines();
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.DrawSphere(point1.position, radius);
         Gizmos.DrawSphere(point2.position, radius);
     }
+
+
+
 
 }
