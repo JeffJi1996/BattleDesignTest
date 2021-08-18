@@ -14,7 +14,7 @@ public class TimelineFunctions : MonoBehaviour
     private RuntimeAnimatorController enemy_AC;
     public PlayableDirector playableDirector;
     
-
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -23,6 +23,7 @@ public class TimelineFunctions : MonoBehaviour
         }
     }
 
+    
     public void TimeLineStart()
     {
         ClosePlayerInput();
@@ -47,6 +48,11 @@ public class TimelineFunctions : MonoBehaviour
         Player.GetComponent<Animator>().runtimeAnimatorController = player_AC;
         Enemy.GetComponent<Animator>().runtimeAnimatorController = enemy_AC;
         ResetEnemy();
+    }
+
+    public void HitEnemy()
+    {
+        CameraShake.Instance.ShakeCamera(5f,0.2f);
     }
     private void ClosePlayerInput()
     {

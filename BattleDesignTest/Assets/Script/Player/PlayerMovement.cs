@@ -31,7 +31,6 @@ public class PlayerMovement : Singleton<PlayerMovement>
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
            
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
             if (ComboAttack.Instance.CanMoveState())
             { 
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);

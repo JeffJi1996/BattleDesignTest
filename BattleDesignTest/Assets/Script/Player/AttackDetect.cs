@@ -1,3 +1,4 @@
+using System.Collections;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -28,13 +29,27 @@ public class AttackDetect : Singleton<AttackDetect>
     private void Detect(Transform atkPos, float atkRange, PlayerAttackType playerAttackType)
     {
         Collider[] hitEnemies = Physics.OverlapSphere(atkPos.position, atkRange, enemyLayer);
-        if (hitEnemies.Length>0 && !hasHurt)
+        if (hitEnemies.Length > 0 && !hasHurt)
         {
             foreach (var hitEnemy in hitEnemies)
             {
                 int damage = Random.Range(playerAttackType.healthDamageMin, playerAttackType.healthDamageMax);
                 int poise = Random.Range(playerAttackType.poiseDamageMin, playerAttackType.poiseDamageMax);
-                hitEnemy.GetComponent<EnemyAI>().GetHurt(damage,poise);
+                hitEnemy.GetComponent<EnemyAI>().GetHurt(damage, poise);
+
+                if (playerAttackType.attackType == PlayerAttackType.AttackType.LightAttack)
+                {
+                    //StartCoroutine(HitPause(hitEnemy, .05f));
+                    CameraShake.Instance.ShakeCamera(1f, 0.04f);
+                    StartCoroutine(HitPause(hitEnemy, 0.04f));
+
+                }
+                else
+                {
+                    //StartCoroutine(HitPause(hitEnemy, .1f));
+                    StartCoroutine(HitPause(hitEnemy, 0.06f));
+                    CameraShake.Instance.ShakeCamera(5f, 0.06f);
+                }
 
                 if (hitEnemy.GetComponent<EnemyAI>().currentPoise <= 0)
                 {
@@ -43,6 +58,7 @@ public class AttackDetect : Singleton<AttackDetect>
 
                 if (PlayerAbility.Instance.SoulState())
                 {
+                    StartCoroutine(HitPause(hitEnemy, .3f));
                     PlayerAbility.Instance.AddSoulValue(playerAttackType.soulPlus);
                 }
             }
@@ -50,23 +66,30 @@ public class AttackDetect : Singleton<AttackDetect>
         }
     }
 
+    IEnumerator HitPause(Collider hitEnemy, float pauseTime)
+    {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(pauseTime);
+        Time.timeScale = 1;
+    }
+
     private void Update()
     {
         if (LeftHandDetectStart)
         {
-            Detect(LHandPos,LHandRange,PlayerAttackTypes[0]);
+            Detect(LHandPos, LHandRange, PlayerAttackTypes[0]);
         }
         else if (RightHandDetectStart)
         {
-            Detect(RHandPos, RHandRange,PlayerAttackTypes[1]);
+            Detect(RHandPos, RHandRange, PlayerAttackTypes[1]);
         }
         else if (LeftFootDetectStart)
         {
-            Detect(LFootPos,LFootRange,PlayerAttackTypes[0]);   
+            Detect(LFootPos, LFootRange, PlayerAttackTypes[0]);
         }
-        else if(RightFootDetectStart)
+        else if (RightFootDetectStart)
         {
-            Detect(RFootPos,RFootRange,PlayerAttackTypes[1]);
+            Detect(RFootPos, RFootRange, PlayerAttackTypes[1]);
         }
     }
 
@@ -128,6 +151,6 @@ public class AttackDetect : Singleton<AttackDetect>
         LeftFootDetectStart = false;
         RightFootDetectStart = false;
     }
-    
+
 
 }
