@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if ( Input.GetKeyDown("space") ){
-			Instantiate(fx_prefabs[ index_fx ], new Vector3(0, 0, 0), Quaternion.identity);	
+			Instantiate(fx_prefabs[ index_fx ], new Vector3(0, 0, 0), Quaternion.identity);	 
 		}
 	}
 

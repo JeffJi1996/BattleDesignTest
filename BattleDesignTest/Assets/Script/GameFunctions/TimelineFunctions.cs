@@ -9,10 +9,12 @@ public class TimelineFunctions : MonoBehaviour
     public GameObject Player;
     public GameObject Enemy;
     public Transform enemyStartTrans;
+    public Transform enemyEndTrans;
     public CinemachineFreeLook camera3Cam;
     private RuntimeAnimatorController player_AC;
     private RuntimeAnimatorController enemy_AC;
     public PlayableDirector playableDirector;
+    public GameObject groundVFX;
     
     
     private void Update()
@@ -112,5 +114,9 @@ public class TimelineFunctions : MonoBehaviour
         Enemy.GetComponent<Animator>().SetTrigger("HurtHit");
     }
 
+    public void GroundVFX()
+    {
+        Instantiate(groundVFX, enemyEndTrans.position, Quaternion.identity);
+    }
 
 }
