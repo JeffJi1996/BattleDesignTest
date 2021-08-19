@@ -17,6 +17,8 @@ public class PlayerAbility : Singleton<PlayerAbility>
 
     [SerializeField] private Animator camAnimator;
 
+    [SerializeField] private int SkillDamage;
+
     public Animator anim;
     private bool isSouling = false;
 
@@ -98,4 +100,13 @@ public class PlayerAbility : Singleton<PlayerAbility>
         Time.timeScale = 1;
     }
 
+    public float ReturnCurrentSkillBar()
+    {
+        return currentSoulValue / fullSoulValue;
+    }
+
+    public int ReturnSkillDamage()
+    {
+        return SkillDamage;
+    }
 }

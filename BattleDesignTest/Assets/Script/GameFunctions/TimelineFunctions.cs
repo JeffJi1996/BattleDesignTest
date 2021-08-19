@@ -39,6 +39,7 @@ public class TimelineFunctions : MonoBehaviour
         enemy_AC = Enemy.GetComponent<Animator>().runtimeAnimatorController;
         Enemy.GetComponent<Animator>().runtimeAnimatorController = null;
 
+        PlayerAbility.Instance.OpenVFX();
     }
 
     public void TimeLineEnd()
@@ -50,6 +51,8 @@ public class TimelineFunctions : MonoBehaviour
         Player.GetComponent<Animator>().runtimeAnimatorController = player_AC;
         Enemy.GetComponent<Animator>().runtimeAnimatorController = enemy_AC;
         ResetEnemy();
+
+        PlayerAbility.Instance.CloseVFX();
     }
 
     public void HitEnemy()

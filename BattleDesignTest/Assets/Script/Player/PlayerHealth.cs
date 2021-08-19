@@ -41,4 +41,9 @@ public class PlayerHealth : Singleton<PlayerHealth>
         canBeHurt = false;
     }
 
+    public float ReturnCurrentHealthBar()
+    {
+        return (float)currentHealth / health;
+    }
+
 }

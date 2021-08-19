@@ -1,4 +1,5 @@
 using System.Collections;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -162,7 +163,6 @@ public class EnemyAI : EnemyBase
             DetectPlayer(point1, point2, radius);
         }
     }
-
     public void HurtInRecover()
     {
         anim.SetTrigger("HurtHit");
@@ -209,7 +209,10 @@ public class EnemyAI : EnemyBase
         Gizmos.DrawSphere(point2.position, radius);
     }
 
-
+    public void ReduceHealth(int damage)
+    {
+        currentHealth -= damage;
+    }
 
 
 }
