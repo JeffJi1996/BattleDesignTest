@@ -74,7 +74,7 @@ public class EnemyAI : EnemyBase
 
     private IEnumerator OnIdle()
     {
-        float waitTime = Random.Range(2f, 4f);
+        float waitTime = Random.Range(1f, 1.5f);
         currentWaitTime = 0f;
         while (currentState == State.Idle)
         {

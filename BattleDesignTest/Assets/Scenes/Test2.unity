@@ -668,10 +668,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 892889811}
     - target: {fileID: 1454303505383515080, guid: 5d0943a2a02f999468de62bc0dc6b234, type: 3}
-      propertyPath: health
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454303505383515080, guid: 5d0943a2a02f999468de62bc0dc6b234, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -4414,6 +4410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1099759909}
+  - component: {fileID: 1099759910}
   m_Layer: 5
   m_Name: AIBar
   m_TagString: Untagged
@@ -4443,6 +4440,25 @@ RectTransform:
   m_AnchoredPosition: {x: -22, y: 496}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1099759910
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099759908}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5e168f3a64cef7e429e9fd9bb455cfa8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1138602960
 GameObject:
   m_ObjectHideFlags: 0
@@ -4630,7 +4646,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348108028}
-  m_LocalRotation: {x: 0.15463191, y: 0.46499825, z: -0.08286156, w: 0.86775553}
+  m_LocalRotation: {x: 0.1546319, y: 0.4649982, z: -0.082861535, w: 0.86775553}
   m_LocalPosition: {x: 4.741014, y: 4.64857, z: 3.5737054}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4682,8 +4698,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1389440228}
+  - component: {fileID: 1389440229}
   m_Layer: 5
-  m_Name: Bar
+  m_Name: PlayerBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4711,6 +4728,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -403}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1389440229
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389440227}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c0ca7b2c22d5c2a44accd6caed3f225b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1393053680
 GameObject:
   m_ObjectHideFlags: 0
@@ -5511,11 +5547,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3309527268687174267, guid: 0fcd8b944f36b104ebb48ac734dfb778, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008967981
+      value: -0.000000008420328
       objectReference: {fileID: 0}
     - target: {fileID: 3309527268687174267, guid: 0fcd8b944f36b104ebb48ac734dfb778, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000018791093
+      value: 0.0000000017643568
       objectReference: {fileID: 0}
     - target: {fileID: 3309527269708767793, guid: 0fcd8b944f36b104ebb48ac734dfb778, type: 3}
       propertyPath: m_LocalPosition.x

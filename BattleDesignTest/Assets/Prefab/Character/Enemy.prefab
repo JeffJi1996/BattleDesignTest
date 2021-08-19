@@ -341,9 +341,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c6f25758261d543a85b71e2831f3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
+  health: 200
   currentHealth: 0
-  poise: 30
+  poise: 80
   currentPoise: 0
   rb: {fileID: 4339443744515232668}
   agent: {fileID: 1786388478618125589}
@@ -352,7 +352,7 @@ MonoBehaviour:
   idleRangeMax: 3
   idleRangeMin: 0.5
   attackTime: 2
-  hitRecoverTime: 5
+  hitRecoverTime: 3
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 128
