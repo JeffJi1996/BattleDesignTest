@@ -343,7 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 200
   currentHealth: 0
-  poise: 80
+  poise: 200
   currentPoise: 0
   rb: {fileID: 4339443744515232668}
   agent: {fileID: 1786388478618125589}
