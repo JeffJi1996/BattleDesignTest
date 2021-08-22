@@ -2196,7 +2196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01f16475d3322c4a83550dcb8c7c28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 9999
+  health: 100
   currentHealth: 0
   canBeHurt: 1
 --- !u!136 &3986388527479237426
@@ -2232,6 +2232,7 @@ MonoBehaviour:
   handEffect1: {fileID: 0}
   handEffect2: {fileID: 0}
   camAnimator: {fileID: 0}
+  SkillDamage: 0
   anim: {fileID: 368479380056197374}
 --- !u!1 &6575031901670541639
 GameObject:

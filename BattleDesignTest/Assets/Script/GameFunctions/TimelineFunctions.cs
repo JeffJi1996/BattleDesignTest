@@ -1,4 +1,5 @@
 
+using System.Collections;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,17 +16,8 @@ public class TimelineFunctions : MonoBehaviour
     private RuntimeAnimatorController enemy_AC;
     public PlayableDirector playableDirector;
     public GameObject groundVFX;
-    
-    
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            playableDirector.Play();
-        }
-    }
+    [SerializeField] private float skillTime;
 
-    
     public void TimeLineStart()
     {
         ClosePlayerInput();
@@ -51,13 +43,14 @@ public class TimelineFunctions : MonoBehaviour
         Player.GetComponent<Animator>().runtimeAnimatorController = player_AC;
         Enemy.GetComponent<Animator>().runtimeAnimatorController = enemy_AC;
         ResetEnemy();
-
+        StartCoroutine(StartColdTime());
         PlayerAbility.Instance.CloseVFX();
     }
 
     public void HitEnemy()
     {
         CameraShake.Instance.ShakeCamera(5f,0.2f);
+        UI_Management.Instance.ShakeUI();
     }
     private void ClosePlayerInput()
     {
@@ -120,6 +113,12 @@ public class TimelineFunctions : MonoBehaviour
     public void GroundVFX()
     {
         Instantiate(groundVFX, enemyEndTrans.position, Quaternion.identity);
+    }
+
+    IEnumerator StartColdTime()
+    {
+        yield return new WaitForSeconds(skillTime);
+        PlayerAbility.Instance.CanUseSkill();
     }
 
 }

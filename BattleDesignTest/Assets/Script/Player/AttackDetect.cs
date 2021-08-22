@@ -42,16 +42,16 @@ public class AttackDetect : Singleton<AttackDetect>
 
                 if (playerAttackType.attackType == PlayerAttackType.AttackType.LightAttack)
                 {
-                    //StartCoroutine(HitPause(hitEnemy, .05f));
-                    CameraShake.Instance.ShakeCamera(1f, 0.04f);
-                    StartCoroutine(HitPause(hitEnemy, 0.04f));
+                    CameraShake.Instance.ShakeCamera(1f, 0.06f);
+                    StartCoroutine(HitPause(hitEnemy, 0.06f));
+                    AudioManager.instance.Play("SFX_Player_LightAttack");
 
                 }
                 else
                 {
-                    //StartCoroutine(HitPause(hitEnemy, .1f));
-                    StartCoroutine(HitPause(hitEnemy, 0.06f));
-                    CameraShake.Instance.ShakeCamera(5f, 0.06f);
+                    StartCoroutine(HitPause(hitEnemy, 0.08f));
+                    CameraShake.Instance.ShakeCamera(5f, 0.08f);
+                    AudioManager.instance.Play("SFX_Player_HeavyAttack");
                 }
 
                 if (hitEnemy.GetComponent<EnemyAI>().currentPoise <= 0)

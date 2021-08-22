@@ -1,8 +1,7 @@
-using System;
+
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class PlayerAbility : Singleton<PlayerAbility>
 {
@@ -21,10 +20,30 @@ public class PlayerAbility : Singleton<PlayerAbility>
 
     public Animator anim;
     private bool isSouling = false;
-
+    private bool canUseSkill = true;
+    private bool doOnce = true;
+    [SerializeField] private PlayableDirector playableDirector;
+    [SerializeField] private GameObject UI_canUseSkill;
     public void Start()
     {
         anim = GetComponent<Animator>();
+    }
+
+    public void Update()
+    {
+        if (currentSoulValue >= fullSoulValue && canUseSkill)
+        {
+            UI_canUseSkill.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                canUseSkill = false;
+                playableDirector.Play();
+            }
+        }
+        else
+        {
+            UI_canUseSkill.SetActive(false);
+        }
     }
 
     public void ChangeIntoSoul()
@@ -108,5 +127,10 @@ public class PlayerAbility : Singleton<PlayerAbility>
     public int ReturnSkillDamage()
     {
         return SkillDamage;
+    }
+
+    public void CanUseSkill()
+    {
+        canUseSkill = true;
     }
 }
